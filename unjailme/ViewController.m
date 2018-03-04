@@ -16,7 +16,7 @@
 @end
 
 @implementation ViewController
-
+@synthesize numofports;
 - (void)startBluetoothStatusMonitoring {
     // Horrible formatting, but nicer for blog-width!
     self.bluetoothManager = [[CBCentralManager alloc]
@@ -58,6 +58,9 @@
 - (IBAction)doExploit:(id)sender {
     if(self.bluetoothEnabled)
     {
+        NSString *strports = [numofports text];
+        int portstolook = [strports intValue];
+        NSLog(@"user wants to find %x ports", portstolook);
         [self exploit];
         [sender setTitle:@"Done, don't believe me? turn off bluetooth" forState:UIControlStateNormal];
         [self.consoleView setText:self.sbexploit.output];
